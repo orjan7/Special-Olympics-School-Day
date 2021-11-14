@@ -6,6 +6,8 @@ $dbname     =   "sosd2020";
 // Create connection
 // $connect =  mysqli_connect($severname, $username, $password, $dbname);
 $mysqli = new mysqli($severname, $username, $password, $dbname);
+
+
 mysqli_set_charset($mysqli, "utf8");
 // Check connection
 if (!$connect){
