@@ -1,7 +1,7 @@
 <?php
 $severname  =   "localhost";
-$username   =   "orjanis";
-$password   =   "!T1llb4k4";
+$username   =   "root";
+$password   =   "root";
 $dbname     =   "sosd2020";
 // Create connection
 $connect =  mysqli_connect($severname, $username, $password, $dbname);
