@@ -5,7 +5,7 @@ if (isset($_POST['Spara'])) {
     $lastnr = $_POST['lastnr'];
     $branch = $_POST['branch'];
     $sql = "SELECT branch FROM branchHeader WHERE branch LIKE '%$branch%'";
-    $result = mysqli_query($connect, $sql);
+    $result = $mysqli -> query($sql);
     $num_row = mysqli_num_rows($result);
     if ($num_row > 0) {
         echo "<script type='text/javascript'>
@@ -14,8 +14,8 @@ if (isset($_POST['Spara'])) {
                      </script>";
     }        
     else {        
-        $sql1 = mysqli_query($connect, "ALTER TABLE branch ADD `$branch` TINYINT");
-
+        $sql1 = "ALTER TABLE branch ADD `$branch` TINYINT";
+        
             if ($sql1) 
             {
                 $sql2= "INSERT INTO branchHeader (sortNr, branch)

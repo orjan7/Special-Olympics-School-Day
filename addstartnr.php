@@ -1,7 +1,7 @@
 <?php
 require 'header.php';
 $query1 = "SELECT * FROM startNumber";
-$result1 = mysqli_query($connect, $query1); 
+$result1 = $mysqli -> query($query1); 
 ?>
 <div class="container ml-0">
     <h5>Nuvarande start nr</h5>

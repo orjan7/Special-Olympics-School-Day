@@ -31,7 +31,7 @@ if (!empty ($_GET['branch'])) {
         $result1 = $mysqli->query($sql2);
 
         $sql3 = "SELECT * FROM athletes";
-        $result3 = $mysqli->query($sql3);
+        $result2 = $mysqli->query($sql3);
 
     
         echo $nl.'<h5 class="ml-2 mt-2">'.$branch.'</h5>'.$nl;
@@ -39,7 +39,7 @@ if (!empty ($_GET['branch'])) {
         echo '<form class="no-print ml-2">'.$nl;
         echo $tab.'<select name="forma" onchange="location = this.value;">'.$nl;
             echo $tab.$tab.'<option>Elev</option>'.$nl;
-            while ($row = mysqli_fetch_array($result3)) {
+            while ($row = mysqli_fetch_array($result2)) {
                 echo $tab.$tab.'<option value="editstudent.php?editstudent=2&startNumber='.$row["startNumber"].'&site=result.php?branch='.$branch.'">'.$row["firstName"].' '.$row["lastName"].'</option>'.$nl;
             }
             echo $tab.'</select>'.$nl;

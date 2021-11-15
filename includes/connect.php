@@ -7,7 +7,7 @@ $sql2 = "SELECT * FROM branchHeader";
 $result2 = mysqli_query($connect, $sql2);
 
 $sql3 = "SELECT * FROM athletes INNER JOIN branch ON athletes.startNumber=branch.startNumberA ORDER BY athletes.school, FIELD (athletes.stage, 'L','M','H','G')";
-$result3 = mysqli_query($connect, $sql3);
+$result2 = mysqli_query($connect, $sql3);
 
 
 $query4 = "SELECT school, COUNT(*) FROM athletes GROUP BY school";

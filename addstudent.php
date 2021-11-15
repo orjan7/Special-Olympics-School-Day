@@ -1,29 +1,26 @@
 <?php
 require 'header.php';
 
-$query1 = "SELECT city FROM school GROUP BY city";
-$result1 = mysqli_query($connect, $query1);
+$query1 = "SELECT * FROM school ORDER BY city ASC";
+$result1 = $mysqli -> query($query1);
 
-$query2 = "SELECT school FROM school GROUP BY school";
-$result2 = mysqli_query($connect, $query2);
+$query2 = "SELECT startNumber FROM athletes";
+$result2 = $mysqli -> query($query2);
 
-$query3 = "SELECT startNumber FROM athletes";
-$result3 = mysqli_query($connect, $query3);
-
-if (mysqli_num_rows($result3) <=0) {
+if (mysqli_num_rows($result2) <=0) {
     $sNr = '0';
 }
 else {
-    while ($row = mysqli_fetch_array($result3)) {
+    while ($row = mysqli_fetch_array($result2)) {
         $nr[] = $row['startNumber'];
     }
 }
 
-$query4 = "SELECT * FROM startNumber WHERE startNumber NOT IN (".implode(",", $nr).") LIMIT 1";
-$result4 = mysqli_query($connect, $query4);
+$query3 = "SELECT * FROM startNumber WHERE startNumber NOT IN (".implode(",", $nr).") LIMIT 1";
+$result3 = $mysqli -> query($query3);
 
-$query5 = "SELECT * FROM branchHeader ORDER BY sortNr ASC";
-$result5 = $connect->query ($query5);
+$query4 = "SELECT * FROM branchHeader ORDER BY sortNr ASC";
+$result4 = $mysqli -> query($query4);
 // Add student
     echo $nl.$tab.'<div class="container ml-0">'.$nl;
         echo $tab.$tab.'<div>'.$nl;
@@ -32,25 +29,17 @@ $result5 = $connect->query ($query5);
         echo $tab.$tab.'<div>'.$nl;
             echo $tab.$tab.'<form action="actionstudent.php" method="post">'.$nl;
                 echo $tab.$tab.$tab.'<div class="col">'.$nl;
-                    echo $tab.$tab.$tab.$tab.'<select class="form-control form-control-sm" name="city">'.$nl;
-                        echo $tab.$tab.$tab.$tab.$tab.'<option>Ort</option>'.$nl;
-                
-                        while ($row = mysqli_fetch_array($result1)) {
-                            echo $tab.$tab.$tab.$tab.$tab."<option>".$row['city']."</option>".$nl;
-                        }
-                
-                    echo $tab.$tab.$tab.$tab.'</select>'.$nl;
                     echo $tab.$tab.$tab.$tab.'<select class="form-control form-control-sm" name="school">'.$nl;
                         echo $tab.$tab.$tab.$tab.$tab.'<option>Skola</option>'.$nl;
-                    
-                        while ($row = mysqli_fetch_array($result2)) {
-                            echo $tab.$tab.$tab.$tab.$tab."<option>".$row['school']."</option>".$nl;
+                
+                        while ($row = mysqli_fetch_array($result1)) {
+                            echo $tab.$tab.$tab.$tab.$tab."<option value=".$row["idSchool"].">".$row['city']." ".$row['school']."</option>".$nl;
                         }
-                    
+                
                     echo $tab.$tab.$tab.$tab.'</select>'.$nl;
                     echo $tab.$tab.$tab.$tab.'<label>Startnummer</label>'.$nl;
                     
-                        while ($row = mysqli_fetch_array($result4)) {
+                        while ($row = mysqli_fetch_array($result3)) {
                             echo $tab.$tab.$tab.$tab.$tab.'<input type="number" class="form-control" name="startNumber" value="'.$row["startNumber"].'">'.$nl;
                         }
                     
@@ -84,7 +73,7 @@ $result5 = $connect->query ($query5);
                 echo $tab.$tab.$tab.'</div>'.$nl;
                 echo $tab.$tab.'</div>'.$nl;
                 
-                    while ($row = $result5->fetch_assoc()) {
+                    while ($row = $result4->fetch_assoc()) {
                         $branch[] = $tab.$tab.$tab.$tab.$tab.'<th>'.$row['branch'].'</th>'.$nl;
                         $checkbranch[] = $tab.$tab.$tab.$tab.$tab.'<td><input type="checkbox" name="branch[]" value="'.$row['branch'].'"></td>'.$nl;
                     }

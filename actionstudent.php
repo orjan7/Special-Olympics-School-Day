@@ -1,7 +1,6 @@
 <?php
 require 'header.php';
 if (isset($_POST['Spara'])) {
-    $city = $_POST['city'];
     $school = $_POST['school'];
     $startNumber = $_POST['startNumber'];
     $fnamn = $_POST['fnamn'];
@@ -19,14 +18,7 @@ if (isset($_POST['Spara'])) {
     else {
         $photo = 'Ej fotas';
     }
-
-    if ($city === 'Ort'){
-        echo "<script type='text/javascript'>
-                alert('Du måste välja en ort');
-                window.history.back(-1);
-            </script>";
-    }
-    else if ($school === 'Skola'){
+    if ($school === 'Skola'){
         echo "<script type='text/javascript'>
                 alert('Du måste välja en skola');
                 window.history.back(-1);
@@ -56,20 +48,20 @@ if (isset($_POST['Spara'])) {
             $x[] = "'1'";
         }
         
-        $insert1 = "INSERT INTO athletes (startNumber, place, school, firstName, lastName, disabilities, photo, stage) 
-        VALUES ('$startNumber','$city','$school','$fnamn','$lnamn','$disabilities','$photo','$stage')";
+        $insert1 = "INSERT INTO athletes (schoolNumber, stage, firstName, lastName, startNumber, disabilities, photo) 
+        VALUES ('$school','$stage','$fnamn','$lnamn','$startNumber','$disabilities','$photo')";
         
-        if ($connect->query($insert1) === TRUE) {
+        if ($mysqli -> query($insert1) === TRUE) {
             $insert2 = "INSERT INTO branch (startNumberA, ".implode (',', $b).") VALUES ('$startNumber',".implode(',', $x).")";
-            print_r($insert2);
-            if ($connect->query($insert2) === FALSE) {
+            
+            if ($mysqli -> query($insert2) === FALSE) {
                 $delete1 = "DELETE FROM athletes WHERE startNumber=$startNumber";
 
-                if ($connect->query($delete1) === FALSE) {
-                    echo "Delete error: ". $connect->error;
+                if ($mysqli -> query($delete1) === FALSE) {
+                    echo "Delete error: ". $mysqli->error;
                 }
-                if ($connect->query($insert2) === FALSE) {
-                    echo implode (',', $b),$connect->error;
+                if ($mysqli -> query($insert2) === FALSE) {
+                    echo implode (',', $b),$mysqli->error;
                 }
             }
             else {

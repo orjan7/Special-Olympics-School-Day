@@ -2,15 +2,17 @@
 require 'header.php';
 
 $sql_1 = "SELECT * FROM branchHeader";
-$result = $connect->query($sql_1);
-$sql_2 = mysqli_query($connect, "SELECT * FROM branchHeader ORDER BY sortNr DESC LIMIT 1");
-$last_nr = mysqli_fetch_row($sql_2);
+$result_1 = $mysqli -> query($sql_1);
+$sql_2 = "SELECT * FROM branchHeader ORDER BY sortNr DESC LIMIT 1";
+$result_2 = $mysqli -> query($sql_2);
+$last_nr = mysqli_num_rows($result_2);
+// mysqli_num_rows($result3);
 ?>
 <div class="container ml-0">
     <h3>Nuvarande grenare</h3>
     <div class="row">
         <p class="ml-3"><?php
-            while ($row_1 = $result->fetch_assoc()) {
+            while ($row_1 = $result_1->fetch_assoc()) {
                 echo $row_1['branch'].' ';
             }
         ?></p>

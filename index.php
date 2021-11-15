@@ -3,20 +3,20 @@ require 'header.php';
 
 $sql2 = "SELECT * FROM branchHeader";
 $result2 = $mysqli -> query($sql2);
-// ORDER BY athletes.school, FIELD (athletes.stage, 'L','M','H','G')
-$sql3 = "SELECT * FROM athletes INNER JOIN school ON school.idSchool=athletes.schoolNumber INNER JOIN branch ON branch.startNumberA=athletes.startNumber";
+
+$sql3 = "SELECT * FROM athletes INNER JOIN school ON school.idSchool=athletes.schoolNumber INNER JOIN branch ON branch.startNumberA=athletes.startNumber ORDER BY athletes.schoolNumber";
 $result3 = $mysqli -> query($sql3);
 $rowconunt3 = mysqli_num_rows($result3);
 
 $query4 = "SELECT school FROM school";
-$result4 = mysqli_query($connect, $query4);
+$result4 = $mysqli -> query($query4);
 $rowconunt4 = mysqli_num_rows($result4);
 
 $sql5 = "SELECT branch FROM branchHeader";
-$result5 = mysqli_query($connect, $sql5);
+$result5 = $mysqli -> query($sql5);
 $rowconunt5 = mysqli_num_rows($result5)+12;
-echo $rowconunt5;
-while ($row1 = mysqli_fetch_array($result2)) {
+
+while ($row1 = mysqli_fetch_array($result5)) {
     $branchHeader[] = $tab.$tab.$tab.$tab.$tab.'<th class="report-header-cell" nowrap>'.$row1["branch"].'</th>'.$nl;                    
 }
 //  -- Athletes list --
@@ -56,9 +56,6 @@ echo $nl.$tab.'<div class="container ml-0">'.$nl;
                 echo $tab.$tab.$tab.$tab.'</tr>'.$nl;
             }
         echo $tab.$tab.$tab.'</tbody>'.$nl;
-        echo $tab.$tab.$tab.'<tfoot class="report-footer">'.$nl;
-            echo $tab.$tab.$tab.$tab.'<td colspan="4" class="text-left">Special Olympics School '.date('yy').'</td>'.$nl;
-        echo $tab.$tab.$tab.'</tfoot>'.$nl;
     echo $tab.$tab.'</table>'.$nl;
 echo $tab.'</div>'.$nl;
 //-- Athletes list --
