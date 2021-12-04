@@ -18,6 +18,20 @@ body {
 thead.report-header {
     display:table-header-group;
 }
+.nowrap {
+    white-space: nowrap;
+}
+.floatLeft {
+    width: 50%; float: left;
+}
+
+.floatSecendLeft {
+    width: 50%; float: left;
+}
+
+.cont {
+    overflow: hidden;
+}
 @media screen{
     tfoot {
         display: none;

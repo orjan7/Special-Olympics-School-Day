@@ -5,7 +5,6 @@ require 'includes/branch.php';
 if ($_GET['editstudent']=1) {
     $startnumber = $_GET['startNumber'];
     $fromSite = $_GET['site'];
-    echo $fromSite;
     $sql1 = "SELECT * FROM school INNER JOIN athletes ON school.idSchool=athletes.schoolNumber INNER JOIN branch ON athletes.startNumber=branch.startNumberA WHERE athletes.startNumber=$startnumber";
     $result1 = $mysqli -> query($sql1);
     $numcountfields1 = mysqli_num_fields($result1);

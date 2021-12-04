@@ -8,26 +8,25 @@ if (!empty ($_GET['startNumber'])) {
     $replaceGren = str_replace(' ', '_', $branch);
     $sql1 = "SELECT * FROM athletes INNER JOIN branch ON athletes.startNumber=branch.startNumberA 
         WHERE athletes.startNumber='$startNumber'";
-    $result1 = mysqli_query($connect, $sql1);
+    $result1 = $mysqli -> query($sql1);
     
     $replaceGren = str_replace(' ', '_', $branch);
     $res1 = 'r' .$replaceGren. 'One';
     $res2 = 'r' .$replaceGren. 'Two';
                     
     $sql2 = "SELECT * FROM Result WHERE startNumberR = '$startNumber' AND  $res1 LIKE '%%' AND $res2 LIKE '%%'";
-    //$sql2 = "SELECT * FROM Result WHERE startNumberR=$startnumber"; 
-    $result2 = mysqli_query($connect, $sql2);
-
-    if ($connect->query($sql2) === FALSE) {
-        echo 'Något är fel'. mysqli_connect_error();
-    }
-    
+    $result2 = $mysqli -> query($sql2);
 ?>
     <div class="container ml-0">
-        <?php 
+        <?php
+            if ($result2 -> num_rows === 0) {
+                echo '<h5>Lägg till resultat i '.$branch.' för:<br></h5>';
+            } else {
+                echo '<h5>Uppdatera resultatet i '.$branch.' för:<br></h5>';
+            }
             while ($row1 = mysqli_fetch_array($result1)) {
                 $startnr[] = $row1['startNumber'];
-                echo '<h5> Lägg till resultat i '.$branch.' för '.$row1['firstName'].' '.$row1['lastName'].' med startnummer: '.$row1['startNumber'].'</h5>'; 
+                echo $row1['firstName'].' '.$row1['lastName'].' med startnummer: '.$row1['startNumber']; 
             }
         ?>
         <form action="actionresult.php" method="post">
@@ -61,16 +60,11 @@ if (!empty ($_GET['startNumber'])) {
                             else {
                                 echo '<td class="text-left"><input type="number" data-decimals="2" min="0" max="60" step="0.01" name="resultTwo"></td>';
                             }
-                            // if (!empty($row2[$res1]) && !empty($row2[$res2])) {
-                            //     echo '</tbody>
-                            //     </table>';
-                            //     echo '<input type="hidden" name="startnr" value="'.$startnumber.'">';
-                            //     echo '<input type="hidden" name="branch" value="'.$branch.'">';
-                            //     echo '<button type="submit" onclick="update()" name="update">Uppdater</button>';
-                            // }
+                            echo '</tbody>
+                            </table>';
                             echo '<input type="hidden" name="startnr" value="'.$startNumber.'">';
                             echo '<input type="hidden" name="branch" value="'.$branch.'">';
-                            echo '<button type="submit" onclick="update()" name="update">Uppdater</button>';
+                            echo '<button type="submit" onclick="save()" name="save">Spara</button>';
                         }
                     }
                 ?>

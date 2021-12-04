@@ -17,19 +17,19 @@ $result5 = $mysqli -> query($sql5);
 $rowconunt5 = mysqli_num_rows($result5)+12;
 
 while ($row1 = mysqli_fetch_array($result5)) {
-    $branchHeader[] = $tab.$tab.$tab.$tab.$tab.'<th class="report-header-cell" nowrap>'.$row1["branch"].'</th>'.$nl;                    
+    $branchHeader[] = $tab.$tab.$tab.$tab.$tab.'<th class="report-header-cell nowrap">'.$row1["branch"].'</th>'.$nl;                    
 }
 //  -- Athletes list --
-echo $nl.$tab.'<div class="container ml-0">'.$nl;
+echo $nl.$tab.'<div class="container ml-0 mt-2">'.$nl;
     echo $tab.$tab.'<h4>Special Olympics School '.date('yy').'</h4> Antal elever: '.$rowconunt3.' Antal skolor: '.$rowconunt4.$nl; 
     echo $tab.$tab.'<table class="table table-striped table-sm">'.$nl;
         echo $tab.$tab.$tab.'<thead class="report-header">'.$nl;
-        echo $tab.$tab.$tab.$tab.'<tr">'.$nl;
+        echo $tab.$tab.$tab.$tab.'<tr>'.$nl;
             echo $tab.$tab.$tab.$tab.$tab.'<th class="report-header-cell" scope="col">Ort</th>'.$nl;
             echo $tab.$tab.$tab.$tab.$tab.'<th class="report-header-cell" scope="col">Skola</th>'.$nl;
             echo $tab.$tab.$tab.$tab.$tab.'<th class="report-header-cell" scope="col">Nivå</th>'.$nl;
             echo $tab.$tab.$tab.$tab.$tab.'<th class="report-header-cell" scope="col">Namn</th>'.$nl;
-            echo $tab.$tab.$tab.$tab.$tab.'<th class="report-header-cell" nowrap scope="col">Start nr</th>'.$nl;
+            echo $tab.$tab.$tab.$tab.$tab.'<th class="report-header-cell nowrap" scope="col">Start nr</th>'.$nl;
             echo $tab.$tab.$tab.$tab.$tab.'<th class="report-header-cell" scope="col">Skada</th>'.$nl;
             echo $tab.$tab.$tab.$tab.$tab.'<th class="report-header-cell" scope="col">Foto</th>'.$nl;
             echo implode('', $branchHeader);
@@ -39,12 +39,12 @@ echo $nl.$tab.'<div class="container ml-0">'.$nl;
             while ($row2 = mysqli_fetch_array($result3)) {
                 echo $tab.$tab.$tab.$tab.'<tr>'.$nl;
                 echo $tab.$tab.$tab.$tab.$tab.'<td class="text-left">'.$row2["city"].'</td>'.$nl;
-                echo $tab.$tab.$tab.$tab.$tab.'<td class="text-left" nowrap>'.$row2["school"].'</td>'.$nl;
-                echo $tab.$tab.$tab.$tab.$tab.'<td class="text-left" nowrap>'.$row2["stage"].'</td>'.$nl;
-                echo $tab.$tab.$tab.$tab.$tab.'<td class="text-left" nowrap>'.$row2["firstName"].' '.$row2['lastName'].'</td>'.$nl;
+                echo $tab.$tab.$tab.$tab.$tab.'<td class="text-left nowrap">'.$row2["school"].'</td>'.$nl;
+                echo $tab.$tab.$tab.$tab.$tab.'<td class="text-left nowrap">'.$row2["stage"].'</td>'.$nl;
+                echo $tab.$tab.$tab.$tab.$tab.'<td class="text-left nowrap">'.$row2["firstName"].' '.$row2['lastName'].'</td>'.$nl;
                 echo $tab.$tab.$tab.$tab.$tab.'<td><a href="editstudent.php?editstudent=1&startNumber='.$row2["startNumber"].'&site=index.php" class="text-dark">'.$row2["startNumber"].'</a></td>'.$nl;
                 echo $tab.$tab.$tab.$tab.$tab.'<td>'.$row2["disabilities"].'</td>'.$nl;
-                echo $tab.$tab.$tab.$tab.$tab.'<td nowrap>'.$row2["photo"].'</td>'.$nl;
+                echo $tab.$tab.$tab.$tab.$tab.'<td class="nowrap">'.$row2["photo"].'</td>'.$nl;
                 for ($x = 13; $x <=$rowconunt5; $x++ ) {
                     if ($row2[$x] == 0) {
                         echo $tab.$tab.$tab.$tab.$tab.'<td> </td>'.$nl;

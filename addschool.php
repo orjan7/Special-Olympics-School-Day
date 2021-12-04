@@ -1,41 +1,33 @@
 <?php
 require 'header.php';
 
-$query1 = "SELECT * FROM school ";
-$result1 = mysqli_query($connect, $query1);
+$query1 = "SELECT * FROM school ORDER BY city ASC";
+$result1 = $mysqli -> query($query1);
 
-$query2 = "SELECT school FROM school GROUP BY school";
-$result2 = mysqli_query($connect, $query2);
-?>
-<div class="container ml-0">
-    <h5>Nuvarande skolor</h5>
-    <div class="row bg-secondary text-white mt-1 mb-1">
-        <div class="col">
-        <?php
-            $count = 1;
+echo '<div class="container ml-1 mt-1">'.$nl;
+    echo $tab.'<div class="row">'.$nl;
+        echo $tab.$tab.'<div class="col-4">'.$nl;
+            echo $tab.$tab.$tab.'<h4>Nuvarande skolor</h4><br>'.$nl;
+        echo $tab.$tab.'</div>'.$nl;
+        echo $tab.$tab.'<div class="col-4">'.$nl;
+            echo $tab.$tab.$tab.'<h4>Lägg till en skola</h4><br>'.$nl;
+        echo $tab.$tab.'</div>'.$nl;
+    echo $tab.'</div>'.$nl;
+    echo $tab.'<div class="row">'.$nl;
+        echo $tab.$tab.'<div class="col-4 bg-secondary text-white">'.$nl;
             while ($row = mysqli_fetch_array($result1)) {
-                echo '<small>'.$row['city'].' '.$row['school'].'</small><br/>';
-                if ($count % 3 == 0) {
-                    echo '</div><div class="col">';
-                }
-                $count++;
+                echo $tab.$tab.$tab.'<small>'.$row['city'].' '.$row['school'].'</small><br>'.$nl;
             }
-        ?>
-        </div>
-    </div>
-    <div>
-        <h5 class="mt-2">Lägg till en skola</h5>
-    </div>
-    <div>
-        <form action="actionschool.php" method="post">
-            <label>Ort</label>
-            <input type="text" class="form-control" name="city">
-            <label>Skola</label>
-            <input type="text" class="form-control" name="school">
-            <button type="submit" onclick="addbranch()" name="Spara">Spara</button>
-        </form>
-    </div>
-</div>
-<?php
+        echo $tab.$tab.'</div>'.$nl;
+        echo $tab.$tab.'<div class="col-4">'.$nl;
+                echo $tab.$tab.$tab.$tab.'<label>Ort</label>'.$nl;
+                echo $tab.$tab.$tab.$tab.'<input type="text" class="form-control" name="city">'.$nl;
+                echo $tab.$tab.$tab.$tab.'<label>Skola</label>'.$nl;
+                echo $tab.$tab.$tab.$tab.'<input type="text" class="form-control mb-2" name="school">'.$nl;
+                echo $tab.$tab.$tab.$tab.'<button type="submit" name="saveSchool">Spara</button>'.$nl;
+            echo $tab.$tab.$tab.'</form>'.$nl;
+        echo $tab.$tab.'</div>'.$nl;
+    echo $tab.'</div">'.$nl;
+echo '</div>'.$nl;
 require 'footer.php';
 ?>

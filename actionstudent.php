@@ -50,29 +50,23 @@ if (isset($_POST['Spara'])) {
         
         $insert1 = "INSERT INTO athletes (schoolNumber, stage, firstName, lastName, startNumber, disabilities, photo) 
         VALUES ('$school','$stage','$fnamn','$lnamn','$startNumber','$disabilities','$photo')";
-        
-        if ($mysqli -> query($insert1) === TRUE) {
-            $insert2 = "INSERT INTO branch (startNumberA, ".implode (',', $b).") VALUES ('$startNumber',".implode(',', $x).")";
-            
-            if ($mysqli -> query($insert2) === FALSE) {
-                $delete1 = "DELETE FROM athletes WHERE startNumber=$startNumber";
-
-                if ($mysqli -> query($delete1) === FALSE) {
-                    echo "Delete error: ". $mysqli->error;
-                }
-                if ($mysqli -> query($insert2) === FALSE) {
-                    echo implode (',', $b),$mysqli->error;
-                }
-            }
-            else {
-                echo "<script type='text/javascript'>
+        $insert2 = "INSERT INTO branch (startNumberA, ".implode (',', $b).") VALUES ('$startNumber',".implode(',', $x).")";
+        $insert3 = "INSERT INTO Result (startNumberR) VALUES ('$startNumber')";
+        if ($mysqli -> query($insert1)) {
+            if ($mysqli -> query($insert2)) {
+                if ($mysqli -> query($insert3)) {
+                    echo "<script type='text/javascript'>
                             alert('$fnamn $lnamn är nu inlagd');
                             window.location='addstudent.php';
                         </script>";
+                } else {
+                    echo "Insert result error ". $mysqli->error;
+                }
+            } else {
+                echo "Insert branch error ". $mysqli->error;
             }
-        }
-        else {
-            echo "Fel: " . $connect->error;
+        } else {
+            echo "Insert athletes error ". $mysqli->error;
         }
     }
 }

@@ -11,7 +11,7 @@
         <a class="nav-link" href="addschool.php">Lägg till skola</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="addbranch.php">Lägg till, ta bort gren</a>
+        <a class="nav-link" href="addbranch.php">Lägg till en gren</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="result.php">Resultat</a>
