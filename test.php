@@ -28,23 +28,21 @@ while ($row3 = mysqli_fetch_array($result1)) {
           echo $branchCheck[$y].'<input type="checkbox" name="checkbox[]" value="'.$branchCheck[$y].'">'.$nl;
       }
       else {
-          echo $branchCheck[$y].'<input type="checkbox" name="checkbox[]" id="myCheck" value="'.$branchCheck[$y].'" onclick="checkBranch("$branchCheck[$y]")" checked>'.$nl;
+          echo $branchCheck[$y].'<input type="checkbox" name="checkbox[]" id="myCheck'.$y.'" value="'.$branchCheck[$y].'" data-valuetwo="'.$startnumber.'" onclick="checkBranch('.$y.')" checked>'.$nl;
       }
   }
 }
 ?>
-<?php $text = '<p id="text"></p>';
-  echo $text;
-// $sql = "SELECT * FROM Result WHERE startNumberR=$startnumber";
-?>
-<script type="text/javaScript">
-  function checkBranch(var slask) {
+<!-- <script type="text/javaScript">
+  function checkBranch( slask) {
   // Get the checkbox
-  var checkBox = document.getElementById("myCheck").value;
-  // Get the output text
-  document.getElementById("text").innerHTML = slask;
+  var checkBox = document.getElementById("myCheck"+slask).value;
+  var answer = window.confirm("Vill du ta bort resultatet "+ checkBox +" ?");
+    if (answer) {
+        alert("Resulater har tagits bort");
+    }
 }
-</script>
+</script> -->
 <?php
 // if ($_GET['editstudent']=1) {
 //     $startnumber = 1;

@@ -17,7 +17,7 @@
         <a class="nav-link" href="result.php">Resultat</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="addstartnr.php">start Nr</a>
+        <a class="nav-link" href="addstartnr.php">Start Nr</a>
       </li>
     </ul>
   </nav>

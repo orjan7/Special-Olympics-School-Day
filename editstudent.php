@@ -34,9 +34,9 @@ if ($_GET['editstudent']=1) {
         $student[] = $tab.$tab.$tab.$tab.$tab.'<td colspan="2"><select name="school">'.$nl;
         while ($row1 = mysqli_fetch_array($result2)) {
             if ($row1["school"] == $row3[2]) {
-                $student[] = $tab.$tab.$tab.$tab.$tab.'<option selected="selected" value="'.$row1["idSchool"].'">'.$row3[2].' '.$row1["idSchool"].'</option>'.$nl;
+                $student[] = $tab.$tab.$tab.$tab.$tab.'<option selected="selected" value="'.$row1["idSchool"].'">'.$row3[2].'</option>'.$nl;
             }
-            $student[] = $tab.$tab.$tab.$tab.$tab.'<option value="'.$row1["idSchool"].'">'.$row1["school"].' '.$row1["idSchool"].'</option>'.$nl;
+            $student[] = $tab.$tab.$tab.$tab.$tab.'<option value="'.$row1["idSchool"].'">'.$row1["school"].'</option>'.$nl;
         }
         $student[] = $tab.$tab.$tab.$tab.$tab.'<select></td>'.$nl;
         $student[] = $tab.$tab.$tab.$tab.$tab.'<td colspan="2"><input type="text" name="stage" value="'.$row3[5].'"></td>'.$nl;
@@ -57,7 +57,7 @@ if ($_GET['editstudent']=1) {
                 $branch[] = $tab.$tab.$tab.$tab.$tab.'<td><input type="checkbox" name="checkbox[]" value="'.$branchCheck[$y].'"></td>'.$nl;
             }
             else {
-                $branch[] = $tab.$tab.$tab.$tab.$tab.'<td><input type="checkbox" name="checkbox[]" value="'.$branchCheck[$y].'" checked></td>'.$nl;
+                $branch[] = $tab.$tab.$tab.$tab.$tab.'<td><input type="checkbox" name="checkbox[]" id="myCheck'.$y.'" value="'.$branchCheck[$y].'" data-valuetwo="'.$startnumber.'" data-valuethree="'.$fromSite.'" onclick="checkBranch('.$y.')" checked></td>'.$nl;
             }
         }
     }

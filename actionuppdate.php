@@ -35,7 +35,7 @@ if (isset($_POST['Spara'])) {
     } else {
         // echo 'INSERT INTO branch '. implode(',', $b).'VALUE '. implode(',', $x);
         $mess1 = "<script type='text/javascript'>
-                    alert('Uppgifterna till deltagaren med startnummer: $startNumber är nu uppdaterad 1.');
+                    alert('Uppgifterna till deltagaren med startnummer: $startNumber är nu uppdaterad.');
                     window.location='".$fromSite."';
                 </script>";
         $sql1 = "INSERT INTO branch (startNumberA, ".implode (',', $b).") VALUES ('$startNumber',".implode(',', $x).")";
