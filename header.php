@@ -23,4 +23,4 @@ $ntab =chr(-9);
     <link rel="stylesheet" href="includes/mall.css" />
 </head>
 <body>
-    <?php require 'navbar.php'?>
+<?php require 'navbar.php'?>

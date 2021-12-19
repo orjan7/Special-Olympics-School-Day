@@ -1,7 +1,7 @@
 <?php
 require 'header.php';
 require 'resnavbar.php';
-require 'includes/branch.php';
+// require 'includes/branch.php';
 
 if (!empty ($_GET['branch'])) {
     $branch = $_GET['branch'];
@@ -18,7 +18,7 @@ if (!empty ($_GET['branch'])) {
         echo $tab.'<select name="forma" onchange="location = this.value;">'.$nl;
             echo $tab.$tab.'<option>Elev</option>'.$nl;
             while ($row = mysqli_fetch_array($result2)) {
-                echo $tab.$tab.'<option value="editstudent.php?editstudent=2&startNumber='.$row["startNumber"].'&site=result.php?branch='.$branch.'">'.$row["firstName"].' '.$row["lastName"].'</option>'.$nl;
+                echo $tab.$tab.'<option value="editstudent.php?startNumber='.$row["startNumber"].'&site=result.php?branch='.$branch.'">'.$row["firstName"].' '.$row["lastName"].'</option>'.$nl;
             }
             echo $tab.'</select>'.$nl;
         echo '</form>'.$nl;
@@ -72,9 +72,6 @@ if (!empty ($_GET['branch'])) {
             echo $tab.$tab.$tab.'<td class="text-center">'.$total.'</td>'.$nl;
         }
         echo $tab.'</tbody>'.$nl;
-        // echo $tab.'<tfoot class="report-footer">'.$nl;
-        //     echo $tab.$tab.'<td colspan="4" class="text-left">'.$branch.' resultat</td>'.$nl;
-        // echo $tab.'</tfoot>';
     echo '</table>'.$nl;
     }    
 }
