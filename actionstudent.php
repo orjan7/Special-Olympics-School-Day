@@ -24,13 +24,13 @@ if (isset($_POST['Spara'])) {
                 window.history.back(-1);
             </script>";
     }
-    else if ($fnamn  === ''){
+    else if (empty($fnamn)){
         echo "<script type='text/javascript'>
                 alert('Du måste skriva in ett förnamn');
                 window.history.back(-1);
             </script>";
     }
-    else if ($lnamn  === ''){
+    else if (empty($lnamn)){
         echo "<script type='text/javascript'>
                 alert('Du måste skriva in ett efternamn');
                 window.history.back(-1);
@@ -47,6 +47,8 @@ if (isset($_POST['Spara'])) {
             $b[] = '`'.$value.'`';
             $x[] = "'1'";
         }
+        $fnamn = mysqli_real_escape_string($mysqli, $fnamn);
+        $lname = mysqli_real_escape_string($mysqli, $lname);
         
         $insert1 = "INSERT INTO athletes (schoolNumber, stage, firstName, lastName, startNumber, disabilities, photo) 
         VALUES ('$school','$stage','$fnamn','$lnamn','$startNumber','$disabilities','$photo')";

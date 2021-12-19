@@ -24,6 +24,8 @@ if (isset($_POST['Spara'])) {
         $x[] = "'1'";
         
     }
+    $firstName = mysqli_real_escape_string($mysqli, $firstName);
+    $lastName = mysqli_real_escape_string($mysqli, $lastName);
     
     $delete1 = "DELETE FROM branch WHERE startNumberA='$startNumber'";
     

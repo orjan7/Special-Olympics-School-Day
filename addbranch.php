@@ -6,7 +6,7 @@ $result1 = $mysqli -> query($sql1);
 $sql_2 = "SELECT * FROM branchHeader ORDER BY sortNr DESC LIMIT 1";
 $result_2 = $mysqli -> query($sql_2);
 
-echo '<div class="container ml-1 mt-1">'.$nl;
+echo $nl.'<div class="container ml-1 mt-1">'.$nl;
     echo $tab.'<div class="row">'.$nl;
         echo $tab.$tab.'<div class="col-4">'.$nl;
             echo $tab.$tab.$tab.'<h4>Nuvarande grenare</h4>'.$nl;

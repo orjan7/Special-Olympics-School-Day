@@ -20,6 +20,7 @@ echo '<div class="container ml-1 mt-1">'.$nl;
             }
         echo $tab.$tab.'</div>'.$nl;
         echo $tab.$tab.'<div class="col-4">'.$nl;
+            echo $tab.$tab.$tab.'<form action="actionschool.php" method="post">'.$nl;
                 echo $tab.$tab.$tab.$tab.'<label>Ort</label>'.$nl;
                 echo $tab.$tab.$tab.$tab.'<input type="text" class="form-control" name="city">'.$nl;
                 echo $tab.$tab.$tab.$tab.'<label>Skola</label>'.$nl;
@@ -27,7 +28,7 @@ echo '<div class="container ml-1 mt-1">'.$nl;
                 echo $tab.$tab.$tab.$tab.'<button type="submit" name="saveSchool">Spara</button>'.$nl;
             echo $tab.$tab.$tab.'</form>'.$nl;
         echo $tab.$tab.'</div>'.$nl;
-    echo $tab.'</div">'.$nl;
+    echo $tab.'</div>'.$nl;
 echo '</div>'.$nl;
 require 'footer.php';
 ?>
